@@ -1,0 +1,22 @@
+
+name: AFKCloud Server Check
+
+on:
+  push:
+    paths:
+      - 'AFKCloud-Server-0.1.0.zip'
+      - '.github/workflows/main.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Check server ZIP
+        run: |
+          test -f AFKCloud-Server-0.1.0.zip
+          unzip -t AFKCloud-Server-0.1.0.zip
+          echo "AFKCloud Server ZIP проверен!"
